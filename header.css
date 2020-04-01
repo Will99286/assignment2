@@ -1,0 +1,103 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+nav{
+    width: 100%;
+    background-color: #B0E0E6; /* #babac9*/
+    height: 59px;
+    
+}
+ul.headerList{
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+    margin-right: 0;
+    position: relative;
+    
+}
+
+ul li{
+    
+    list-style: none;
+    display:inline-block;
+    padding: 20px;
+    transition-duration: 0.8s;
+}
+ul li:hover{
+    background-color: #a7abb2; /* #a7abb2*/
+}
+ul li a{
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: "Roboto", sans-serif;
+    
+    
+}
+
+div.menu-toggle{
+    width: 100%;
+    padding:10px 20px;
+    background-color: #B0E0E6;
+    text-align: right;
+    box-sizing: border-box;
+    display: none;
+    
+}
+header .logo{
+    color: #fff;
+    height: 50px;
+    line-height: 60px;
+    font-size: 24px;
+    float: left;
+    font-weight: bold;
+    padding-left: 30px;
+    
+}
+header .menu-toggle img{
+    width: 30px;
+    height: 30px;
+}
+
+header .menu-toggle img:hover{
+    cursor: pointer;
+}
+
+@media (max-width: 768px){
+
+    nav {
+        background-color: #B0E0E6;
+        transition: all .2s ease-in-out;
+    }
+
+    div.menu-toggle{
+        display: block;
+    }
+    ul.headerList{
+        width: 100%;
+        display: none;
+        margin-top: 10px;
+        position: relative; 
+        opacity: 0.8;
+    }
+    ul.headerList li{
+        display: block;
+        text-align: center;
+        padding: 10px;
+        border-bottom: solid white;
+        
+    }
+
+
+    ul.active{
+        display: block;
+        background-color: #B0E0E6;
+    }
+}
+
+/*
+https://www.w3schools.com/howto/howto_js_topnav_responsive.asp
+*/
