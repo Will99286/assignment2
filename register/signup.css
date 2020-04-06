@@ -1,0 +1,7 @@
+label,
+select,
+input[type="text"],
+input[type="submit"] {
+  display: block;
+  padding: 0.5em 0.25em;
+}

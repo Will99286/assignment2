@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Sign Up</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+  <body>
+    <main>
+      <div class="signupForm">
+        <h1>Sign UP</h1>
+        <form method="post" action="register.php">
+          <label>First Name</label>
+          <input
+            type="text"
+            placeholder="First Name"
+            name="firstName"
+            required
+          />
+          <label>Last Name</label>
+          <input type="text" placeholder="Last Name" name="lastName" required />
+          <label>City</label>
+          <input type="text" placeholder="City" name="city" required />
+          <label>Country</label>
+          <input type="text" placeholder="Country" name="country" required />
+          <label>Email</label>
+          <input type="text" placeholder="Email" name="email" required />
+          <label>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            name="password"
+            required
+          />
+          <label>Confirm Password</label>
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            name="confirmPass"
+            required
+          />
+          <input type="submit" value="Sign Up" />
+        </form>
+      </div>
+    </main>
+  </body>
+</html>
