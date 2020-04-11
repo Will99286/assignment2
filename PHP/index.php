@@ -12,10 +12,10 @@ session_start();
         <div id="container">
             <div id="homeContainer">
                 <div>
-                    <button onclick="login.php" id="login">Login</button>
+                    <button onclick="window.location='login.php'" id="login">Login</button>
                 </div>
                 <div>
-                    <button onclick="signup.php" id="join">Join</button>
+                    <button onclick="window.location='signup.php'" id="join">Join</button>
                 </div>
                 <div id="search">
                     <input type="text" name="" id="searchMovie" placeholder="SEARCH BOX FOR Movies">
