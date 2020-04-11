@@ -1,5 +1,5 @@
 <?php
-require_once('config.inc.php'); 
+require_once('signupConfig.inc.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
 $insertSQL = "insert into user (FirstName, LastName, City, Country, Email, Password, UserNumber)";
@@ -20,14 +20,10 @@ function registerUser ($email, $insertSQL) {
     saveNewUser($insertSQL); 
     echo "registered";
   } else {
-    echo "email error!";
+    echo "Email Already Registered";
   }
 }
 
-function checkPassword() {
-
-
-}
 
 function generateUserNumber() {
   try {
@@ -95,29 +91,9 @@ $newPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
     />
     <link rel="stylesheet" href="signup.css" />
   </head>
-  <script type="text/JavaScript">
-   function checkPassword(password1, passowrd2){
-                // If password not entered 
-                if (password1 == '') 
-                    alert ("Please enter Password"); 
-                      
-                // If confirm password not entered 
-                else if (password2 == '') 
-                    alert ("Please enter confirm password"); 
-                      
-                // If Not same return False.     
-                else if (password1 != password2) { 
-                    alert ("\nPassword did not match: Please try again...") 
-                    return false; 
-                } 
-  
-                // If same return True. 
-                else{ 
-                  return true;
-                }
-              }
-</script>
   <body>
-    <script> checkPassword($password, $confirmPass);</script>
-</body>
+    <?php 
+    registerUser($email, $insertSQL);
+    ?>
+    </body>
 </html>
