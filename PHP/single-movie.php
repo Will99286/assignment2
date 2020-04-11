@@ -1,4 +1,5 @@
 <?php
+//https://stackoverflow.com/questions/44309585/properly-sorting-multidimensional-array-using-usort-and-spaceship-operator
 //https://www.runoob.com/php/php-json.html
 //www.php.net/manual/zh/function.usort.php
 //https://stackoverflow.com/questions/1545357/how-to-check-if-a-user-is-logged-in-in-php
@@ -23,7 +24,7 @@
                 $eachCast = (array)$c;
                 $castsArray[] = $eachCast;            
             }
-            usort($castsArray, function($a, $b){
+            uasort($castsArray, function($a, $b){
                 return $a['order'] <=> $b['order'];
             });
         }
@@ -40,7 +41,7 @@
                 $crewArray[] = $eachCrew;
     
             }
-            usort($crewArray, function($a, $b){
+            uasort($crewArray, function($a, $b){
                 $result = $a['department'] <=> $b['department'];
                 if($result == 0){
                     $result = $a['name'] <=> $b['name'];
