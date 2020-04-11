@@ -1,5 +1,5 @@
 <?php
-require_once('signupConfig.inc.php'); 
+require_once('config.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
 $insertSQL = "insert into user (FirstName, LastName, City, Country, Email, Password, UserNumber)";
