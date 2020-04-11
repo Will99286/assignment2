@@ -1,0 +1,36 @@
+body
+{
+	/*background*/
+	background-image: url("../images/heroImage.jfif");
+	background-size: cover;
+	background-position: center center;                  
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+#section {
+  background-color: #ffffff;
+  border: 1px solid black;
+  opacity: 0.6;
+  width: 50%;
+  height: 70%;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border-radius: 7px;
+  box-shadow: 0px 0px 5px 2px black;
+  position:relative;
+  left:25%;
+
+}
+
+h1
+{
+	color:white;
+	padding:5px;
+}
+
+#whoweare {
+	position:relative;
+	bottom:45px;
+}
