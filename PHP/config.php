@@ -1,9 +1,9 @@
 
 <?php
     define('DBHOST','bbj31ma8tye2kagi.cbetxkdyhwsb.us-east-1.rds.amazonaws.com');
-    define('DBNAME', 'xbrv0j3lh6k8l5jh');
-    define('DBUSER', 'jtkwwqf3rdwxk8io');
-    define('DBPASS', 'hee9tr3ver3ajbue');
+    define('DBNAME', 'd1eamej0bobjmtrf');
+    define('DBUSER', 'xn917ff8eniatzex');
+    define('DBPASS', 'j6tpsor98ckdnsmx');
     define('DBCONNSTRING', "mysql:host=" . DBHOST . ";dbname=" . DBNAME . ";charset=utf8mb4;");
 ?>
 
