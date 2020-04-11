@@ -136,7 +136,6 @@
             if(isset($_SESSION['loggedIn']) && $_SESSION['loggedIn']==true)
             {
                 echo"<button type = 'button' class='favoriteButton' data-id='". $_GET['movie_id']."'>Add Favourites</button>";
-                echo"<div id='addedMessage'></div>";
             }
         ?>
         </div>
