@@ -29,7 +29,7 @@ session_start();
         }
         if(array_key_exists('removeOne', $_POST))
         {
-            removeOne();
+            removeOne($_POST["removeOne"]);
         }
         function removeOne($id)
         {
@@ -61,14 +61,14 @@ session_start();
                             echo "<a href=\"single-movie.php?id=". $row["id"] ."\">". $poster ."</a>";
 
                             echo "<form method=\"post\">";
-                            echo "<input type=\"submit\" name=\"removeOne\" value=\"Remove this movie\"/>";
+                            echo "<button type=\"submit\" name=\"removeOne\" value=\"". $row["id"] ."\">Remove this movie</button>";
                             echo "</form>";
                             $counter++;
                         }
                     }
                 }
                 echo "<form method=\"post\">";
-                echo "<input type=\"submit\" name=\"removeAll\" value=\"Remove all movies\"/>";
+                echo "<button type=\"submit\" name=\"removeAll\" value=\"heck\">Remove all movies</button>";
                 echo "</form>";
             }
             else
