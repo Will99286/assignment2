@@ -6,7 +6,6 @@ include 'header.php';
 //https://www.w3schools.com/css/css_rwd_viewport.asp
     require 'config.php';
     require 'db-functions.php';
-    include 'header.php';
     $pdo = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
     $movie = null;
     if (isset($_GET["movie_id"])){
