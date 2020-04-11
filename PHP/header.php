@@ -35,10 +35,10 @@
                     } else {
                         ?>
                         <li><a href="index.php">Home</a></li>
-                        <li><a href="browse.php">Browser</a></li>
+                        <li><a href="browse-movies.php">Browser</a></li>
                         <li><a href="login.php">Login</a></li>
-                        <li><a href="registration.php">Registration</a></li>
-                        <li><a href="about.php">About</a></li>
+                        <li><a href="signup.php">Registration</a></li>
+                        <li><a href="aboutPage.php">About</a></li>
                         <?php
                     }
                 ?>
