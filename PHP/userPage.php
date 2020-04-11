@@ -1,13 +1,16 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8"/>  
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="userPage.css" />
+        <link rel="stylesheet" type="text/css" href="../CSS/userPage.css" />
     </head>
     <body>
         <?php
-        include "db_connection.php";
+        include "config.php";
         $conn = openCon();
 
         $imagePath = "https://image.tmdb.org/t/p/w92";
@@ -29,19 +32,27 @@
         </div>
         <div id="favorites">
             <?php
-            $favoritesArray = array();/*loads movie ID based on stored session data from favorites*/
-            $total = count($favoritesArray);
+            $favoritesArray = array_keys($_SESSION['favorites']);
+            $total = count($_SESSION['favorites']);
             $counter = 0;
 
-            while($total > $counter)
+            if(isset($_SESSION['favorites']) && !empty($_SESSION['favorites']))
             {
-                $favSql = "SELECT id, poster_path FROM movie WHERE id ='". $favoritesArray[$counter] ."'";
-                $displayFav = $conn->query($favSql);
-                $favData = $displayFav->fetch_assoc();
+                while($total > $counter)
+                {
+                    $favSql = "SELECT id, poster_path FROM movie WHERE id ='". $favoritesArray[$counter] ."'";
+                    $displayFav = $conn->query($favSql);
+                    $favData = $displayFav->fetch_assoc();
 
-                $image = "\"". $imagePath. $favData["poster_path"] ."\"";
-                $poster = "<img src=". $image ."/>";
-                echo "<a href=\"single-movie.php?id=". $favData["id"] ."\">". $poster ."</a>";
+                    $image = "\"". $imagePath. $favData["poster_path"] ."\"";
+                    $poster = "<img src=". $image ."/>";
+                    echo "<a href=\"single-movie.php?id=". $favData["id"] ."\">". $poster ."</a>";
+                    $counter++;
+                }
+            }
+            else
+            {
+                echo "<div>Looks like you don't have anything favorited.</div>"
             }
             ?>
         </div>
@@ -97,7 +108,7 @@
                         {
                             $favYearDisplay = "SELECT id, poster_path FROM movie WHERE release_date='". $row["release_date"] ."'";
                             $favYearResult = $conn->query($favYearDisplay);
-                            
+
                             while ($year = $favYearResult->fetch_assoc())
                             {
                                 $image = "\"". $imagePath. $year["poster_path"] ."\"";

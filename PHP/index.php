@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,6 +25,6 @@
         </div>
     </body>
     <section>
-        <script src="home.js"></script>
+        <script src="../JS/home.js"></script>
     </section>
 </html>
