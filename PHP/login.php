@@ -1,23 +1,27 @@
 <!DOCTYPE html>
+<?php
+    include 'header.php';
+?>
+
 <html>
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
-  <link rel="stylesheet" href="login.css">
+  <link rel="stylesheet" href="../CSS/login.css">
 </head>
 
 <body>
 
-  <div id="main">
+  
     <h1 id="header">Login</h1>
     
-	
+	<div id="main">
 	<?php if (isset($_REQUEST["error"]) && $_REQUEST["error"] == 1): ?>
-    <div id="login-error">
+    <!--<div id="login-error">-->
       <p id="login-error-msg">Invalid email and/or password. Please try again.</p>
-    </div>
+    <!--</div>-->
 <?php endif; ?>
 	
 
@@ -27,7 +31,7 @@
       <input type="submit" value="Login" id="login-form-submit">
     </form>
   
-  <a href="test-page.php"><button id="sign-up">Sign Up</button></a>
+  <div id="button"><a href="signup.php">Sign Up</a></div>
   </div>
   
   
