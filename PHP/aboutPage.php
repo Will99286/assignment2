@@ -20,7 +20,7 @@
         <li>Will Ji <a href="https://github.com/"></a> </li> 
         <li>Ivan Markovic <a href="https://github.com/"></a> </li>    
         <li>Joseph Oliva<a href="https://github.com/"></a> </li> 
-        <li>Arnold<a href="https://github.com/"></a> </li> 
+        <li>Arnold Chi Heung<a href="https://github.com/"></a> </li> 
    </ul>
 </div>
    
