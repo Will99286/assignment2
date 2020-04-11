@@ -10,7 +10,7 @@ session_start();
     </head>
     <body>
         <?php
-        include "config.php";
+        include "db_connection.php";
         $conn = openCon();
 
         $imagePath = "https://image.tmdb.org/t/p/w92";
@@ -52,7 +52,7 @@ session_start();
             }
             else
             {
-                echo "<div>Looks like you don't have anything favorited.</div>"
+                echo "<div>Looks like you don't have anything favorited.</div>";
             }
             ?>
         </div>

@@ -10,7 +10,7 @@ session_start();
     </head>
     <body>
         <?php
-        include "config.php";
+        include "db_connection.php";
         $conn = openCon();
         $counter = 0;
         $imagePath = "https://image.tmdb.org/t/p/w92";
