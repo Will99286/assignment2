@@ -6,7 +6,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="browse-movies.css" />
+    <link rel="stylesheet" href="../CSS/browse-movies.css" />
     <script>
         document.addEventListener("DOMContentLoaded", function(){
             document.getElementById("clear").addEventListener("click",
@@ -20,7 +20,7 @@
 </head>
 <body>
 <aside class="MovieFilters">
-            <h4>Movie Filter</h4>
+            <h1>Browser</h1>
             <div class="container">
                 <form class="sideBox" method="get" action="browse.php">
                     <div class="field">
