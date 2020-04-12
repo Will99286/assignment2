@@ -1,16 +1,14 @@
 <?php
-include 'header.php';
+session_start();
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8"/>  
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="../CSS/index.css" />
+        <link rel="stylesheet" type="text/css" href="../CSS/home.css" />
     </head>
     <body id="hero">
-	<h1>Home</h1>
         <div id="container">
             <div id="homeContainer">
                 <div>
@@ -20,8 +18,10 @@ include 'header.php';
                     <button onclick="window.location='signup.php'" id="join">Join</button>
                 </div>
                 <div id="search">
-                    <input type="text" name="" id="searchMovie" placeholder="SEARCH BOX FOR Movies">
-                    <button onclick="" id="procSearch"></button>
+                    <form method="get" action="browse.php">
+                        <input type="text" name="title" id="searchMovie" placeholder="SEARCH BOX FOR Movies">
+                        <button onclick="" id="procSearch"></button>
+                    </form>
                 </div>
             </div>
         </div>
