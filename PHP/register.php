@@ -13,6 +13,7 @@ $email = $_POST['email'];
 $password = passwordBcrypt($_POST['password']);
 $userNumber = generateUserNumber();
 $insertSQL .= " values ($userNumber, '$firstName', '$lastName', '$city', '$country', '$email', '$password', ' ', ' ')";
+echo $insertSQL;
 registerUser($email, $insertSQL);
 }
 
