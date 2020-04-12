@@ -23,7 +23,7 @@
 </head>
 <body>
 <aside class="MovieFilters">
-            <h1>Browser</h1>
+            <h1 id="header">Browser</h1>
             <div class="container">
                 <form class="sideBox" method="get" action="browse.php">
                     <div class="field">
