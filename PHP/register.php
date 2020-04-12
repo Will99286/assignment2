@@ -1,39 +1,35 @@
 <?php
-require_once('config.php'); 
+require_once('signupConfig.inc.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
-
-function getFields(){
-$insertSQL = "INSERT INTO user (id, firstname, lastname, city, country, email, password)";
+$insertSQL = "insert into user (FirstName, LastName, City, Country, Email, Password, UserNumber)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
 $country = $_POST['country'];
 $email = $_POST['email'];
-$password = passwordBcrypt($_POST['password']);
+$password = $_POST['password'];
+$confirmPass = $_POST['confirmPass'];
+$account = [$firstName, $lastName, $city, $country, $email, $password];
 $userNumber = generateUserNumber();
-$insertSQL .= " values ($userNumber, '$firstName', '$lastName', '$city', '$country', '$email', '$password', ' ', ' ')";
-echo $insertSQL;
-registerUser($email, $insertSQL);
-}
+$insertSQL .= " values ('$firstName', '$lastName', '$city', '$country', '$email', '$password', '$userNumber');";
+
 
 function registerUser ($email, $insertSQL) {
-  echo "hello";
   if (!checkEmail($email)){
     saveNewUser($insertSQL); 
     echo "registered";
-    echo "</br>";
   } else {
-    echo "email error!";
-    echo "<button id='backButton' action = 'signup.php'>Back</button>";
+    echo "Email Already Registered";
   }
 }
+
 
 function generateUserNumber() {
   try {
     $count = 0;
     $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'SELECT * FROM d1eamej0bobjmtrf.user';
+    $sql = 'select * from user';
     $statement = runQuery($connection, $sql, null);
     if ($statement){
     foreach ($statement as $s){
@@ -52,12 +48,14 @@ function checkEmail ($email) {
   try {
     $result = false;
     $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'SELECT email FROM d1eamej0bobjmtrf.user';
+    $sql = 'select Email from user';
     $statement = runQuery($connection, $sql, null);
     foreach ($statement as $s){
       if ($email == $s[0]){
           $result = strcmp($email, $s[0]);
+          echo $result;
         $result = true;
+        echo $result;
       } 
     }
     $connection = null;
@@ -91,8 +89,11 @@ $newPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="signup.css" />
   </head>
   <body>
-  <?php getFields();?>
-</body>
+    <?php 
+    registerUser($email, $insertSQL);
+    ?>
+    </body>
 </html>

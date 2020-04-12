@@ -1,5 +1,5 @@
 <?php
-include 'header.php';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@ include 'header.php';
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../CSS/signup.css" />
+    <link rel="stylesheet" href="signup.css" />
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(){
         document.querySelector("#signUpForm").addEventListener("submit", function(e){
@@ -42,11 +42,10 @@ include 'header.php';
   </head>
   <body>
     <main>
-        <h1>Sign Up</h1>
-		<div class=signup > 
+      <div class=signup >
+        <h1>Sign UP</h1>
         <p id="errorMessages"></p>
-		<div class="form">
-		<form id="signUpForm" method="post" action="register.php">
+        <form id="signUpForm" method="post" action="register.php">
           <label>First Name</label>
           <input
             type="text"
@@ -68,9 +67,7 @@ include 'header.php';
           <input id="confirmPass" type="password" placeholder="Confirm Password" name="confirmPass" required/>
           <input type="submit" id="submit" value="Sign Up" />
         </form>
-		</div>
-		</div>
-      <!--</div>-->
+      </div>
     </main>
   </body>
 </html>
