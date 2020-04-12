@@ -88,7 +88,6 @@ $newPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="signup.css" />
   </head>
   <body>
   <?php registerUser($email, $insertSQL);?>
