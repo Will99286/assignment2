@@ -1,5 +1,5 @@
 <?php
-require_once('config.php'); 
+require_once('config.inc.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
 $insertSQL = "insert into user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
