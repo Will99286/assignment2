@@ -54,6 +54,7 @@ function checkEmail ($email) {
     $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
     $sql = 'SELECT email FROM d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
+    echo $statement;
     foreach ($statement as $s){
       if ($email == $s[0]){
           $result = strcmp($email, $s[0]);
