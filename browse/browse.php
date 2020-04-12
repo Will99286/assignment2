@@ -1,117 +1,199 @@
+
+
 <?php
+//https://www.geeksforgeeks.org/php-explode-function/
+
 
 require_once('browseConfig.inc.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
 function myFunction () {
 if (isset($_GET['title']) && $_GET['title'] != ""){
-    $sql = makeSQL("title", $_GET['title']);
+    $sql = makeSQL($_GET['title']);
     $result = fillResults($sql);
     populateContents($result);
+
 } else if (isset($_GET['yearRate']) && $_GET['yearRate'] != ""){
-    $filterOption = $_GET['yearRate'];
-    $value = $_GET[$filterOption];
-    $sql = makeSQL($filterOption, $value);
-    $result = fillResults($sql);
-    populateContents($result);
-    } 
-}
 
-function makeSQL ($option, $value) {
-    if ($option == "title"){
-        return "select * from movie where title = '$value'";
-    } else if ($option == 'yearBefore'){
-        return "select id from movie where release_date < '$value'";
-    } else if ($option == 'yearAfter'){
-        return "select id from movie where release_date > '$value'";
-    } else if ($option == "rateBelow"){
-        return "select id from movie where popularity < '$value'";
-    } else if ($option == "rateAbove"){
-        return "select id from movie where popularity > '$value'";
+    if ($_GET['yearRate'] == "yearInBetween"){
+        $values = getYearsInBetweens($_GET['yearBetweenStart'], $_GET['yearBetweenEnd']);
+        $movies=[];
+        foreach($values as $v){
+            $movies = searchByYear($movies, $v, "inBetween");
+        }
+        foreach($movies as $m){
+            $sql = makeSQL($m);
+            $result = fillResults($sql);
+            populateContents($result);
+        } 
 
+    } else if ($_GET['yearRate'] == 'rateInBetween'){
+        $values = getRatingInBetweens($_GET['ratingBetweenStart'], $_GET['ratingBetweenEnd']);
+        $movies = [];
+        foreach($values as $v){
+            $movies = searchByPopularity($movies, $v, "inBetween");
+        }
+        foreach($movies as $m){
+            $sql = makeSQL($m);
+            $result = fillResults($sql);
+            populateContents($result);
+        }
+
+    } else if ($_GET['yearRate'] == 'yearAfter'){
+            $year = $_GET['yearAfter'];
+            $movies = [];
+            $movies = searchByYear($movies, $year, "after");
+            foreach ($movies as $m){
+                $sql = makeSQL($m);
+                $result = fillResults($sql);
+                populateContents($result);
+            }
+
+    } else if ($_GET['yearRate'] == 'yearBefore'){
+        $year = $_GET['yearBefore'];
+        $movies = []; 
+        $movies = searchByYear($movies, $year, "before");
+        foreach($movies as $m){
+            $sql = makeSQL($m);
+            $result = fillResults($sql);
+            populateContents($result);
+        }
+
+} else if ($_GET['yearRate'] == 'rateAbove'){
+        $year = $_GET['rateAbove'];
+        $movies = [];
+        $movies = searchByPopularity($movies, $year, "above");
+        foreach($movies as $m){
+            $sql = makeSQL($m);
+            $result = fillResults($sql);
+            populateContents($result);
+        }
+} else if ($_GET['yearRate'] == 'rateBelow'){
+    $year = $_GET['rateBelow'];
+    $movies = [];
+    $movies = searchByPopularity($movies, $year, "below");
+    foreach ($movies as $m){
+        $sql = makeSQL($m);
+        $result = fillResults($sql);
+        populateContents($result);
     }
 }
-
-
-
-function fillResults($sql) {
-    $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    return $result = runQuery($connection, $sql, null);
+     
+    
+     }
 }
 
-function populateContents ($result){
-    while ($row = $result->fetch()) {
-        $companyArray = getArr( $movie['production_companies'] );
-        echo json_encode($row);
-        populateMovie($row);
-        foreach ($companyArray as $c){
-            populateCompanies($c['name']);
+function makeSQL ($value) {
+        return "select * from movie where title = '$value'";
+}
+
+function searchByYear($result, $year, $option){
+    $sql = "select * from movie";
+    $movies = fillResults($sql);
+    foreach($movies as $row){
+        $movieYear = getYear($row['release_date']);
+        $title = $row['title'];
+        if ($option == "after"){
+            if ($movieYear >= $year){
+                array_push($result, $title);
+            }
+        } else if ($option == "before"){
+            if ($movieYear >= $year){
+                array_push($result, $title);
+            }
+        } else if ($option == "inBetween"){
+            if ($movieYear == $year){
+                array_push($result, $title);
+       
         }
     }
 }
+    return $result;
+}
+
+function searchByPopularity($result, $popularity, $option){
+    $sql = "select * from movie";
+    $movies = fillResults($sql);
+    foreach($movies as $row){
+        $moviePopularity = round($row['popularity'], 2);
+        $title = $row['title'];
+        if ($option == "above"){
+            if ($moviePopularity >= $popularity){
+                array_push($result, $title);
+            }
+        } else if ($option == "below"){
+            if ($moviePopularity >= $popularity){
+                array_push($result, $title);
+            }
+        } else if ($option == "inBetween"){
+            if ($moviePopularity == $popularity){
+                array_push($result, $title);
+       
+        }
+    }
+}
+    return $result;
+}
+
+function getYear ($date){
+    $year = explode("-", $date);
+    return $year[0];
+}
+
+function getYearsInBetweens ($before, $after){
+    $result=[];
+    for ($i = $before; $i < $after; $i++){
+        array_push($result, $i);
+    }
+    return $result;
+}
+
+function getRatingInBetweens ($before, $after){
+    $result=[];
+    $beforeRounded = round($before, 2);
+    $afterRounded = round($after, 2);
+    for ($i = $beforeRounded; $i < $afterRounded; $i+0.1){
+        $result.push($i);
+    }
+    return $result;
+}
+
+function fillResults($sql) {
+    $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
+    $result = runQuery($connection, $sql, null);
+    $returnArray = [];
+    foreach ($result as $r){
+        array_push($returnArray, $r);
+    }    
+    return $returnArray;
+
+}
+
+function populateContents ($result){
+    foreach ($result as $row) {
+        populateMovie($row);
+    }
+}
+
 
 function populateMovie($row){
+    $rating = round($row['popularity'], 2);
     echo '<div class="left">';
         echo '<div id="movieTitle">';
             echo '<h2>Movie Title</h2>';
             echo '<h2>' . $row['title'] . '</h2>';
         echo '</div>';
+        echo '<img src="https://image.tmdb.org/t/p/w500/"' . $row['poster_path'] . '">';
         echo '<hr>';
         echo '<div id = "movieInfo">';
             echo '<label>Release date: </label>';
             echo '<span id="release_date">' . $row['release_date'] . '</span></br>';
-            echo '<label>Revenue:</label>';
-            echo '<span id="revenue">' . $row['revenue'] . '</span></br>';
-
-            echo '<label>Runtime: </label>';
-            echo '<span id="runtime">' . $row['runtime'] . '</span></br>';
-
-            echo '<label>Tagline: </label>';
-            echo '<span id="tagline">"'. $row['tagline'] .'"</span></br>';
-            echo'<hr>';
-            echo'<label>IMDB: </label>';
-            echo'<span class="link"><a href="www.imdb.com/title/' . $row['imdb_id'] .'" id="imdb_id"></a>IMDB</span></br>';
-            echo '<label>TMDB: </label>';
-            echo'<span class="link"><a href="themoviedb.org/movie/' . $row['tmdb_id'] . '" id="tmdb_id">TMDB</a></span></br>';
-            echo '<hr>';
-            echo '<label>Overview:</label><br>';
-            echo'<span id="overview">' . $row['overview'] . '</span></br>';
-            echo'<br>';
-            echo'<label id="ratings">Ratings</label><br>';
-            echo'<label >Popularity:' . $row['popularity'] . '</label><span id="popularity"></span> <br>';
+            echo'<label >Popularity:' . $rating . '</label><span id="popularity"></span> <br>';
         echo '</div>';
         echo '<hr>';
 }
 
-    function populateCompanies ($row){
-        echo'<div id="companies">';
-        echo '<h3>Companies</h3>';
-        echo '<p id="companyName">' .$row. '</p>';
-        echo '</div>';
-    }
 
-    function populateCountries ($row){
-        echo '<div id="countries">';
-        echo '<h3>Countries</h3>';
-        echo '<p id="countryName">' . $row . '</p>';
-        echo '</div>';
-    }
-
-    function populateKeywords ($row){
-        echo '<div id="keywords">';
-        echo '<h3>Keywords</h3>';
-        echo '<p id="keyword">' . $row . '</p>';
-        echo '</div>';
-    }
-        
-    function populateGenres ($row) {
-        echo '<div id="genres">';
-        echo '<h3>Genres</h3>';
-        echo '<p id="genre">' . $row . '</p>';
-        echo '</div>';
-
-    echo '</div>';
-    }
 
      
         
