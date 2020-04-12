@@ -10,7 +10,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="signup.css" />
+    <link rel="stylesheet" href="../CSS/signup.css" />
     <script type="text/javascript">
       document.addEventListener("DOMContentLoaded", function(){
         document.querySelector("#signUpForm").addEventListener("submit", function(e){
