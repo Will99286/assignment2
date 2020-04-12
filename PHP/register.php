@@ -4,7 +4,7 @@ require_once('lab14-db-functions.inc.php');
 
 
 function getFields(){
-$insertSQL = "INSERT INTO d1eamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password)";
+$insertSQL = "INSERT INTO user (id, firstname, lastname, city, country, email, password)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
