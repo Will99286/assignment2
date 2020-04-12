@@ -18,6 +18,7 @@ registerUser($email, $insertSQL);
 }
 
 function registerUser ($email, $insertSQL) {
+  echo "hello";
   if (!checkEmail($email)){
     saveNewUser($insertSQL); 
     echo "registered";
