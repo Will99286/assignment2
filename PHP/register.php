@@ -1,6 +1,6 @@
 <?php
 require_once('config.php'); 
-require_once('db-functions.php'); 
+require_once('lab14-db-functions.inc.php'); 
 
 
 function getFields(){
