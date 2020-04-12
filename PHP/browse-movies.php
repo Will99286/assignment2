@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<?php
+    include 'header.php';
+?>
 <html>
     <head>
     <title>Browse Movies</title>
