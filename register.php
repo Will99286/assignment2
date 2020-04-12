@@ -2,7 +2,7 @@
 require_once('config.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
-$insertSQL = "insert into dleamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
+$insertSQL = "insert into d1eamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
@@ -28,7 +28,7 @@ function generateUserNumber() {
   try {
     $count = 0;
     $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'select * from dleamej0bobjmtrf.user';
+    $sql = 'select * from d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
     if ($statement){
     foreach ($statement as $s){
