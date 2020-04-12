@@ -4,7 +4,7 @@
 //https://www.geeksforgeeks.org/php-explode-function/
 
 
-require_once('browseConfig.inc.php'); 
+require_once('config.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
 function myFunction () {
