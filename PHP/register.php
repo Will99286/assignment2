@@ -1,29 +1,29 @@
 <?php
-require_once('config.php'); 
+require_once('config.inc.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
-$insertSQL = "insert into user (FirstName, LastName, City, Country, Email, Password, UserNumber)";
+$insertSQL = "insert into user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
 $country = $_POST['country'];
 $email = $_POST['email'];
-$password = $_POST['password'];
-$confirmPass = $_POST['confirmPass'];
+$password = passwordBcrypt($_POST['password']);
 $account = [$firstName, $lastName, $city, $country, $email, $password];
 $userNumber = generateUserNumber();
-$insertSQL .= " values ('$firstName', '$lastName', '$city', '$country', '$email', '$password', '$userNumber');";
+$insertSQL .= " values ('$userNumber', '$firstName', '$lastName', '$city', '$country', '$email', '$password', "", "");";
 
 
 function registerUser ($email, $insertSQL) {
   if (!checkEmail($email)){
     saveNewUser($insertSQL); 
     echo "registered";
+    echo "</br>";
   } else {
-    echo "Email Already Registered";
+    echo "email error!";
+    echo 
   }
 }
-
 
 function generateUserNumber() {
   try {
@@ -91,9 +91,29 @@ $newPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
     />
     <link rel="stylesheet" href="signup.css" />
   </head>
+  <script type="text/JavaScript">
+   function checkPassword(password1, passowrd2){
+                // If password not entered 
+                if (password1 == '') 
+                    alert ("Please enter Password"); 
+                      
+                // If confirm password not entered 
+                else if (password2 == '') 
+                    alert ("Please enter confirm password"); 
+                      
+                // If Not same return False.     
+                else if (password1 != password2) { 
+                    alert ("\nPassword did not match: Please try again...") 
+                    return false; 
+                } 
+  
+                // If same return True. 
+                else{ 
+                  return true;
+                }
+              }
+</script>
   <body>
-    <?php 
-    registerUser($email, $insertSQL);
-    ?>
-    </body>
+    <script> checkPassword($password, $confirmPass);</script>
+</body>
 </html>
