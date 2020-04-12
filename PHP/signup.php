@@ -42,10 +42,11 @@ include 'header.php';
   </head>
   <body>
     <main>
-      <div class=signup >
-        <h1>Sign UP</h1>
+        <h1>Sign Up</h1>
+		<div class=signup > 
         <p id="errorMessages"></p>
-        <form id="signUpForm" method="post" action="register.php">
+		<div class="form">
+		<form id="signUpForm" method="post" action="register.php">
           <label>First Name</label>
           <input
             type="text"
@@ -67,7 +68,9 @@ include 'header.php';
           <input id="confirmPass" type="password" placeholder="Confirm Password" name="confirmPass" required/>
           <input type="submit" id="submit" value="Sign Up" />
         </form>
-      </div>
+		</div>
+		</div>
+      <!--</div>-->
     </main>
   </body>
 </html>
