@@ -4,7 +4,7 @@ require_once('lab14-db-functions.inc.php');
 
 
 function getFields(){
-$insertSQL = "insert into d1eamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
+$insertSQL = "INSERT INTO d1eamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
@@ -31,7 +31,7 @@ function generateUserNumber() {
   try {
     $count = 0;
     $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'select * from d1eamej0bobjmtrf.user';
+    $sql = 'SELECT * FROM d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
     if ($statement){
     foreach ($statement as $s){
@@ -50,7 +50,7 @@ function checkEmail ($email) {
   try {
     $result = false;
     $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'select email from d1eamej0bobjmtrf.user';
+    $sql = 'SELECT email FROM d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
     foreach ($statement as $s){
       if ($email == $s[0]){
