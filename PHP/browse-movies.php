@@ -27,11 +27,11 @@
             <div class="container">
                 <form class="sideBox" method="get" action="browse.php">
                     <div class="field">
-                        <label> Title </label>
+                        <label> <strong>Title</strong> </label>
                     </div>
                     <div class="row"><input name="title" id="textField_Title" type="text"></div>
-                    <div class="field">
-                        <label>Year</label>
+                    <div class="field"><br />
+                        <label><strong>Year</strong></label>
                     </div>
                     <div class="row">
                         <div class="col-10"><input type="radio" name="yearRate" id="yearBefore" value="yearBefore">
@@ -53,8 +53,8 @@
                             <input type="text" name="yearBetweenEnd" id="yearInBetweenEnd">
                         </div>
                     </div>
-                    <div class="field">
-                        <label> Rating </label>
+                    <div class="field"><br />
+                        <label> <strong>Rating</strong> </label>
                     </div>
                     <div class="row">
                         <div class="col-10"><input type="radio" name="yearRate" value="rateBelow" id="rateBelow">
@@ -81,7 +81,7 @@
                             <input type="range" name="rateBetweenEnd" id="ratingInBetweenHigh" min="0" max="10" step="0.1" value="5"><span
                                 id="numInBetweenEnd">5</span>
                         </div>
-                    </div>
+                    </div><br />
                     <button id="filter">Filter</button>
                     <button id='clear'>Clear</button>
                 </form>
