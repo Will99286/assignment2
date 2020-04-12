@@ -6,9 +6,10 @@ session_start();
     <head>
         <meta charset="utf-8"/>  
         <title>Home</title>
-        <link rel="stylesheet" type="text/css" href="../CSS/home.css" />
+        <link rel="stylesheet" type="text/css" href="../CSS/index.css" />
     </head>
     <body id="hero">
+	<h1>Home</h1>
         <div id="container">
             <div id="homeContainer">
                 <div>
