@@ -1,7 +1,4 @@
 <!DOCTYPE html>
-<?php
-    include 'header.php';
-?>
 <html>
     <head>
     <title>Browse Movies</title>
@@ -9,7 +6,7 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,800"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="../CSS/browse-movies.css" />
+    <link rel="stylesheet" href="browse-movies.css" />
     <script>
         document.addEventListener("DOMContentLoaded", function(){
             document.getElementById("clear").addEventListener("click",
@@ -23,15 +20,15 @@
 </head>
 <body>
 <aside class="MovieFilters">
-            <h1>Browser</h1>
+            <h4>Movie Filter</h4>
             <div class="container">
                 <form class="sideBox" method="get" action="browse.php">
                     <div class="field">
-                        <label> <strong>Title</strong> </label>
+                        <label> Title </label>
                     </div>
                     <div class="row"><input name="title" id="textField_Title" type="text"></div>
-                    <div class="field"><br />
-                        <label><strong>Year</strong></label>
+                    <div class="field">
+                        <label>Year</label>
                     </div>
                     <div class="row">
                         <div class="col-10"><input type="radio" name="yearRate" id="yearBefore" value="yearBefore">
@@ -53,8 +50,8 @@
                             <input type="text" name="yearBetweenEnd" id="yearInBetweenEnd">
                         </div>
                     </div>
-                    <div class="field"><br />
-                        <label> <strong>Rating</strong> </label>
+                    <div class="field">
+                        <label> Rating </label>
                     </div>
                     <div class="row">
                         <div class="col-10"><input type="radio" name="yearRate" value="rateBelow" id="rateBelow">
@@ -81,7 +78,7 @@
                             <input type="range" name="rateBetweenEnd" id="ratingInBetweenHigh" min="0" max="10" step="0.1" value="5"><span
                                 id="numInBetweenEnd">5</span>
                         </div>
-                    </div><br />
+                    </div>
                     <button id="filter">Filter</button>
                     <button id='clear'>Clear</button>
                 </form>
