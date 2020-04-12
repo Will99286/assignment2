@@ -2,7 +2,9 @@
 require_once('config.php'); 
 require_once('lab14-db-functions.inc.php'); 
 
-$insertSQL = "insert into user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
+
+function getFields(){
+$insertSQL = "INSERT INTO d1eamej0bobjmtrf.user (id, firstname, lastname, city, country, email, password, salt, password_sha256)";
 $firstName = $_POST['firstName'];
 $lastName = $_POST['lastName'];
 $city = $_POST['city'];
@@ -11,7 +13,8 @@ $email = $_POST['email'];
 $password = passwordBcrypt($_POST['password']);
 $userNumber = generateUserNumber();
 $insertSQL .= " values ('$userNumber', '$firstName', '$lastName', '$city', '$country', '$email', '$password', ' ', ' ')";
-
+registerUser($email, $insertSQL);
+}
 
 function registerUser ($email, $insertSQL) {
   if (!checkEmail($email)){
@@ -28,7 +31,7 @@ function generateUserNumber() {
   try {
     $count = 0;
     $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'select * from user';
+    $sql = 'SELECT * FROM d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
     if ($statement){
     foreach ($statement as $s){
@@ -47,14 +50,12 @@ function checkEmail ($email) {
   try {
     $result = false;
     $connection = setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
-    $sql = 'select Email from user';
+    $sql = 'SELECT email FROM d1eamej0bobjmtrf.user';
     $statement = runQuery($connection, $sql, null);
     foreach ($statement as $s){
       if ($email == $s[0]){
           $result = strcmp($email, $s[0]);
-          echo $result;
         $result = true;
-        echo $result;
       } 
     }
     $connection = null;
@@ -90,6 +91,6 @@ $newPassword = password_hash($password, PASSWORD_BCRYPT, ['cost' => 12]);
     />
   </head>
   <body>
-  <?php registerUser($email, $insertSQL);?>
+  <?php getFields();?>
 </body>
 </html>
