@@ -99,7 +99,7 @@ function searchByYear($result, $year, $option){
                 array_push($result, $id);
             }
         } else if ($option == "before"){
-            if ($movieYear >= $year){
+            if ($movieYear <= $year){
                 array_push($result, $id);
             }
         } else if ($option == "inBetween"){
