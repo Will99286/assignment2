@@ -32,7 +32,7 @@ $dbpass = password_verify($password, $row['password']);  //https://www.php.net/m
 if($email == $dbemail && $dbpass) {
     session_start();
     $_SESSION["userid"] = $row["id"];
-    header("Location: test-page.php");
+    header("Location: userPage.php");
     exit();
 }
 else
