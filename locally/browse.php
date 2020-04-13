@@ -9,7 +9,8 @@ require_once('lab14-db-functions.inc.php');
 
 function myFunction () {
 if (isset($_GET['title']) && $_GET['title'] != ""){
-    $sql = makeSQL($_GET['title']);
+    $movieID = search($_GET['title']);
+    $sql = makeSQL($movieID);
     $result = fillResults($sql);
     populateContents($result);
 
@@ -84,7 +85,7 @@ if (isset($_GET['title']) && $_GET['title'] != ""){
 }
 
 function makeSQL ($value) {
-        return "select * from movie where title = '$value'";
+        return "select * from movie where id = '$value'";
 }
 
 function searchByYear($result, $year, $option){
@@ -92,18 +93,18 @@ function searchByYear($result, $year, $option){
     $movies = fillResults($sql);
     foreach($movies as $row){
         $movieYear = getYear($row['release_date']);
-        $title = $row['title'];
+        $id = $row['id'];
         if ($option == "after"){
             if ($movieYear >= $year){
-                array_push($result, $title);
+                array_push($result, $id);
             }
         } else if ($option == "before"){
             if ($movieYear >= $year){
-                array_push($result, $title);
+                array_push($result, $id);
             }
         } else if ($option == "inBetween"){
             if ($movieYear == $year){
-                array_push($result, $title);
+                array_push($result, $id);
        
         }
     }
@@ -158,16 +159,26 @@ function getRatingInBetweens ($before, $after){
     return $result;
 }
 
+function search ($title){
+    $connection = setConnectionInfo(DBCONNSTRING, DBUSER, DBPASS);
+    $sql = "select title, id from movie";
+    $movieTitles = runQuery($connection, $sql, null);
+    foreach($movieTitles as $m){
+        if (strtolower($m['title']) == strtolower($title)){
+            return $m['id'];
+        } 
+    }
+    echo "Movie Not Found";
+    echo "<br/>";
+    echo "<button onClick='goBack()'>back</button>";
+}
+
 function fillResults($sql) {
     $connection=setConnectionInfo(DBCONNSTRING,DBUSER,DBPASS);
     $result = runQuery($connection, $sql, null);
     $returnArray = [];
         foreach ($result as $r){
-            if (!strpos(json_encode($r), "id")){
-                echo "Movie Not Found";
-            } else { 
             array_push($returnArray, $r);
-    }
     }
     return $returnArray;
 
@@ -181,7 +192,6 @@ function populateContents ($result){
 
 
 function populateMovie($row){
-    echo json_encode($row['poster_path']);
     $rating = round($row['popularity'], 2);
     echo '<div class="left">';
         echo '<div id="movieTitle">';
@@ -197,17 +207,16 @@ function populateMovie($row){
         echo '</div>';
         echo '<hr>';
 }
-
-
-
-     
-        
-        
-
-
 ?>
 <html>
 <head>
+<script type='text/javascript'>
+// https://www.google.com/search?q=html+for+back+button&rlz=1C1CHBF_enCA813CA813&oq=html+for+back+button&aqs=chrome.0.0l8.3363j0j4&sourceid=chrome&ie=UTF-8
+// go back to previous step function
+function goBack(){
+window.history.back();
+}
+</script>
 </head>
 <body>
 <div class="content">
