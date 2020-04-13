@@ -188,7 +188,7 @@ function populateMovie($row){
             echo '<h2>Movie Title</h2>';
             echo '<h2>' . $row['title'] . '</h2>';
         echo '</div>';
-        echo '<a href="single-movie.php/id=' . $row['id'] . '><img src="' . $row['poster_path'] . '"></a>';
+        echo '<a href="/single-movie.php/id=' . $row['id'] . '"><img src="http://image.tmdb.org/t/p/w500/' . $row['poster_path'] . '"></a>';
         echo '<hr>';
         echo '<div id = "movieInfo">';
             echo '<label>Release date: </label>';
